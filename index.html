@@ -33,13 +33,18 @@
             margin-bottom: 20px;
             color: #5e412f;
         }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Adjust the gap between buttons here */
+            position: relative;
+        }
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
             border: 1px solid #d4a373;
             border-radius: 5px;
-            margin: 10px;
             transition: all 0.3s ease;
             background: #fff8e1;
             color: #5e412f;
@@ -50,8 +55,8 @@
         }
         .no-btn {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            top: 50%;
+            transform: translateY(-50%);
         }
         .no-btn:hover {
             background-color: #d4a373;
@@ -91,8 +96,10 @@
 <body>
     <div class="container">
         <h1>Hello Dancer, would you like to go on a coffee date with Ram Pothamsetti?</h1>
-        <button class="yes-btn" onclick="showMessage()">Yes</button>
-        <button id="no-btn" class="no-btn">No</button>
+        <div class="button-container">
+            <button class="yes-btn" onclick="showMessage()">Yes</button>
+            <button id="no-btn" class="no-btn">No</button>
+        </div>
     </div>
 </body>
 </html>

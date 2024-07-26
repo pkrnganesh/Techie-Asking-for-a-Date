@@ -59,14 +59,18 @@
         }
     </style>
     <script>
-        function moveButton() {
+        function moveButton(event) {
             const noBtn = document.getElementById('no-btn');
             const container = document.querySelector('.container');
             const containerRect = container.getBoundingClientRect();
             const noBtnRect = noBtn.getBoundingClientRect();
 
-            const newLeft = Math.random() * (containerRect.width - noBtnRect.width);
-            const newTop = Math.random() * (containerRect.height - noBtnRect.height);
+            let newLeft = Math.random() * (containerRect.width - noBtnRect.width);
+            let newTop = Math.random() * (containerRect.height - noBtnRect.height);
+
+            // Ensure the button doesn't move outside the container
+            newLeft = Math.max(0, Math.min(newLeft, containerRect.width - noBtnRect.width));
+            newTop = Math.max(0, Math.min(newTop, containerRect.height - noBtnRect.height));
 
             noBtn.style.left = `${newLeft}px`;
             noBtn.style.top = `${newTop}px`;
@@ -75,13 +79,20 @@
         function showMessage() {
             window.location.href = 'confirmation.html';
         }
+
+        // Adding touchstart event listener for mobile devices
+        window.addEventListener('load', function() {
+            const noBtn = document.getElementById('no-btn');
+            noBtn.addEventListener('mouseover', moveButton);
+            noBtn.addEventListener('touchstart', moveButton, { passive: true });
+        });
     </script>
 </head>
 <body>
     <div class="container">
         <h1>Hello Dancer, would you like to go on a coffee date with Ram Pothamsetti?</h1>
         <button class="yes-btn" onclick="showMessage()">Yes</button>
-        <button id="no-btn" class="no-btn" onmouseover="moveButton()">No</button>
+        <button id="no-btn" class="no-btn">No</button>
     </div>
 </body>
 </html>

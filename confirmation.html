@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmed</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            font-family: 'Lora', serif;
+            color: #333;
+            margin: 0;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            background: #ffffff;
+            padding: 30px;
+            border: 2px solid #d4a373;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+        }
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 28px;
+            color: #5e412f;
+        }
+        .rose {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+        .rose::before, .rose::after {
+            content: '';
+            position: absolute;
+            background: var(--rose-color);
+        }
+        .rose::before {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            top: 0;
+            left: 5px;
+            box-shadow: 
+                15px 15px 0 -5px var(--rose-color),
+                -15px 15px 0 -5px var(--rose-color),
+                0 25px 0 -10px var(--rose-color);
+        }
+        .rose::after {
+            width: 20px;
+            height: 40px;
+            bottom: 0;
+            left: 10px;
+            border-radius: 0 0 20px 20px;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0.2;
+            }
+        }
+    </style>
+    <script>
+        function createRoses() {
+            const numRoses = 50;
+            const colors = ['#ff69b4', '#ff1493', '#ff007f', '#db7093', '#e6a8d7', '#f7cac9'];
+            for (let i = 0; i < numRoses; i++) {
+                const rose = document.createElement('div');
+                rose.className = 'rose';
+                rose.style.left = `${Math.random() * 100}vw`;
+                rose.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                rose.style.animationDelay = `${Math.random() * 2}s`;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                rose.style.setProperty('--rose-color', color);
+                document.body.appendChild(rose);
+            }
+        }
+
+        function redirectToCoffeeDate() {
+            setTimeout(() => {
+                window.location.href = 'coffee_date.html';
+            }, 5000); // 5 seconds delay
+        }
+        
+        window.onload = function() {
+            createRoses();
+            redirectToCoffeeDate();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Awesome! I’ll be at Nescafe today after classes, looking forward to seeing you!</h1>
+    </div>
+</body>
+</html>
